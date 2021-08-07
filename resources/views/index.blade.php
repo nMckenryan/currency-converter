@@ -8,24 +8,25 @@
             <div class="text-center font-bold text-2xl text-blue-600">
                 <h2>
                     <i class="fab fa-gg"></i>
-                    Convert
+                    Currency Converter
                 </h2>
             </div>
 
             <form action="/convert" method="POST">
                 @csrf
 
+                <!-- AMOUNT -->
                 <div class="px-4 py-12 text-white">
                     <div class="flex items-centr justify-between mb-5">
                         <div class="flex flex-col font-bold w-2/6 px-2">
                             <label for="amount" class="mb-3 text-black">
                                 Amount
                             </label>
-                            <input value="{{ @session('amount') }}" type="text" name="amount" placeholder="1.00" class="py-3 px-5 rounded focus:outline-none text-gray-600 focus:text-gray-600 border border-4">
+                            <input value="{{ @session('amount') }}" type="number" name="amount" placeholder="1.00" class="py-3 px-5 rounded focus:outline-none text-gray-600 focus:text-gray-600 border border-4" required>
                         </div>
 
                         <!-- FROM  -->
-
+                        <!-- TODO Search bar? -->
                         <div class="flex flex-col font-bold w-4/6 px-2">
                             <label for="from" class="mb-3 text-black">
                                 From
@@ -41,7 +42,8 @@
                         </div>
 
                         <!-- TO   -->
-
+                        <!-- TODO: narrow down most popular currencies -->
+                        <!-- TODO: Sort currencies by crypto/fiat status -->
                         <div class="flex flex-col font-bold w-4/6 px-2">
                             <label for="to" class="mb-3 text-black">
                                 To
@@ -55,6 +57,7 @@
                             </select>
                         </div>
 
+                        <!-- SUBMIT -->
                         <div class="float-right text-right">
                             <button type="submit" class="bg-blue-600 border font-bold mt-6 py-4 px-5 rounded-xl transition-all hover:bg-blue-500">
                                 Convert
@@ -63,21 +66,26 @@
                     </div>
                 </div>
             </form>
+
+            <!-- CONVERSION BOX - appears when submitted. -->
+            @if(session('conversion'))
+            <div class="text-gray-500 text-center pt-12 font-bold text-5xl w-4/5 mx-auto my-auto">
+                {{ session('conversion') }}
+                <div class="text-2xl">As of {{session('time')}}</div>
+            </div>
+
+            <!-- ERROR BOX -->
+            @elseif($errors->any())
+
+            @foreach ($errors->all() as $error)
+            <div class="text-red-500 text-center pt-12 font-bold text-5xl w-4/5 mx-auto">
+                {{ $error }}
+            </div>
+            @endforeach
+            @endif
         </div>
 
-        <!-- CONVERSION BOX - appears when submitted. -->
-        @if(session('conversion'))
-        <div class="text-gray-500 text-center pt-12 font-bold text-5xl w-4/5 mx-auto">
-            {{ session('conversion') }}
-        </div>
 
-        @elseif($errors->any())
-        @foreach ($errors->all() as $error)
-        <div class="text-red-500 text-center pt-12 font-bold text-5xl w-4/5 mx-auto">
-            {{ $error }}
-        </div>
-        @endforeach
-        @endif
     </div>
 
     @endsection
