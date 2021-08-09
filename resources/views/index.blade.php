@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="min-w-screen min-h-screen bg-gray-100 flex flex-col items-center justify-center">
+<div class="min-w-screen min-h-screen flex flex-col items-center justify-center">
     <div class="w-5/6 lg:w-3/6 rounded-xl bg-gradient-to-b shadow-xl">
         <div class="text-white py-4 bg-gray-200">
             <div class="text-center font-bold text-2xl text-blue-600">
@@ -34,7 +34,7 @@
                             <select class="py-3 px-5 rounded focus:outline-none text-gray-600 focus:text-gray-600 border border-4" name="from">
 
                                 @foreach ($codes as $code => $value)
-                                <option class="py-1" {{ $code == @session('from') || $code == "EUR" ? "selected" : ""}}>
+                                <option class="py-1" {{ $code == @session('from') || $code == "AUD" ? "selected" : ""}}>
                                     {{$code}}
                                 </option>
                                 @endforeach

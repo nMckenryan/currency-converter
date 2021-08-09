@@ -13,19 +13,46 @@ class CurrencyController extends Controller
         return view(
             'index',
             [
-                'codes' => Currency::rates()->latest()->withoutVerifying()->get()
+                'codes' => Currency::rates()->latest()
+                    ->source('crypto')
+                    ->symbols(['BTC', 'BNB', 'XRP', 'DOT', 'LINK', 'LTC', 'KYD', 'USD', 'AUD', 'UKP', 'NZD', 'ETH', 'EUR', 'RUB'])
+                    ->withoutVerifying()->get()
             ]
         );
     }
 
+    // public function expandSymbol(String $symbol)
+    // {
+    //     $ns = "INVALID";
+    //     switch ($symbol) {
+    //         case "BTC":
+    //             $ns = "Bitcoin";
+    //             break;
+    //         case "EUR":
+    //             $ns = "Euro";
+    //             break;
+    //         case "RUB":
+    //             $ns = "Russian Ruble";
+    //             break;
+    //         case "XRP":
+    //             $ns = "Ripple";
+    //             break;
+    //     }
+    //     return $ns;
+    // }
+
+
+
     public function convert(Request $request)
     {
-
         $request->validate([
             'amount' => 'numeric|min:0',
             'from' => 'required',
             'to' => 'required'
         ]);
+
+
+
 
         $currentTime = Carbon::now();
 
@@ -34,7 +61,7 @@ class CurrencyController extends Controller
             ->to($request->to)
 
             ->amount($request->amount)
-            ->round(2)
+            // ->round(2)
             ->withoutVerifying()
             ->throw()
             ->get();
@@ -44,7 +71,8 @@ class CurrencyController extends Controller
             'time' => $currentTime->toDateTimeString(),
             'amount' => $request->amount,
             'from' => $request->from,
-            'to' => $request->to
+            'to' => $request->to,
+            // 'curr' => expandSymbol($request->to)
         ]); //redirects user to previous webpage. 
     }
 }
