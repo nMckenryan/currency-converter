@@ -2,12 +2,11 @@
 
 @section('content')
 
-<div class="min-w-screen min-h-screen flex flex-col items-center justify-center">
-    <div class="w-5/6 lg:w-3/6 rounded-xl bg-gradient-to-b shadow-xl">
-        <div class="text-white py-4 bg-gray-200">
+<div class="min-w-screen min-h-screen flex flex-col items-center justify-center ">
+        <div class="text-white py-4 bg-gray-200 rounded-xl w-5/6 lg:w-3/6  shadow-xl">
             <div class="text-center font-bold text-2xl text-blue-600">
                 <h2>
-                    <i class="fab fa-gg"></i>
+                    <i class="fa-solid fa-circle-dollar"></i>
                     Currency Converter
                 </h2>
             </div>
@@ -42,7 +41,6 @@
                         </div>
 
                         <!-- TO   -->
-                        <!-- TODO: narrow down most popular currencies -->
                         <!-- TODO: Sort currencies by crypto/fiat status -->
                         <div class="flex flex-col font-bold w-4/6 px-2">
                             <label for="to" class="mb-3 text-black">
@@ -69,23 +67,23 @@
 
             <!-- CONVERSION BOX - appears when submitted. -->
             @if(session('conversion'))
-            <div class="text-gray-500 text-center pt-12 font-bold text-5xl w-4/5 mx-auto my-auto">
+            <div class="text-gray-500 text-center pb-5 font-bold text-5xl w-4/5 mx-auto my-auto">
                 {{ session('conversion') }}
-                <div class="text-2xl">As of {{session('time')}}</div>
+                <div class="text-lg pt-3">As of {{session('time')}}</div>
             </div>
 
             <!-- ERROR BOX -->
             @elseif($errors->any())
 
             @foreach ($errors->all() as $error)
-            <div class="text-red-500 text-center pt-12 font-bold text-5xl w-4/5 mx-auto">
+            <div class="text-red-500 text-center pb-5 font-bold text-5xl w-4/5 mx-auto">
                 {{ $error }}
             </div>
             @endforeach
             @endif
         </div>
 
-
+    </div>
     </div>
 
     @endsection

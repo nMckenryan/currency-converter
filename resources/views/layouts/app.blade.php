@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currency Converter</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/5.0.7/css/all.css">
+    <script src="https://kit.fontawesome.com/fff9eba413.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body class="
+bg-gradient-to-r from-yellow-600 to-red-600
+animate-gradient-x ">
     @yield('content')
 </body>
 

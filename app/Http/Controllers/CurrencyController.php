@@ -21,28 +21,6 @@ class CurrencyController extends Controller
         );
     }
 
-    // public function expandSymbol(String $symbol)
-    // {
-    //     $ns = "INVALID";
-    //     switch ($symbol) {
-    //         case "BTC":
-    //             $ns = "Bitcoin";
-    //             break;
-    //         case "EUR":
-    //             $ns = "Euro";
-    //             break;
-    //         case "RUB":
-    //             $ns = "Russian Ruble";
-    //             break;
-    //         case "XRP":
-    //             $ns = "Ripple";
-    //             break;
-    //     }
-    //     return $ns;
-    // }
-
-
-
     public function convert(Request $request)
     {
         $request->validate([
@@ -50,9 +28,6 @@ class CurrencyController extends Controller
             'from' => 'required',
             'to' => 'required'
         ]);
-
-
-
 
         $currentTime = Carbon::now();
 
