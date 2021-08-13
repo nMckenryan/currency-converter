@@ -10,13 +10,13 @@
                     Currency Converter
                 </h2>
             </div>
-
+{{-- TODO: Test Mobile REsponsiveness --}}
             <form action="/convert" method="POST">
                 @csrf
 
                 <!-- AMOUNT -->
-                <div class="px-4 py-12 text-white">
-                    <div class="flex items-centr justify-between mb-5">
+                <div class="flex-box px-4 py-12 text-white">
+                    <div class="flex items-center justify-between mb-5">
                         <div class="flex flex-col font-bold w-2/6 px-2">
                             <label for="amount" class="mb-3 text-black">
                                 Amount
@@ -57,7 +57,7 @@
 
                         <!-- SUBMIT -->
                         <div class="float-right text-right">
-                            <button type="submit" class="bg-blue-600 border font-bold mt-6 py-4 px-5 rounded-xl transition-all hover:bg-blue-500">
+                            <button type="submit" class="bg-blue-600 border font-bold mt-7 py-3 px-5 rounded-xl transition-all hover:bg-blue-500">
                                 Convert
                             </button>
                         </div>

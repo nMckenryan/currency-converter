@@ -36,6 +36,7 @@ class CurrencyController extends Controller
             ->to($request->to)
 
             ->amount($request->amount)
+            // TODO: Fix Crypto Rounding Issue (rounding to 0 on btc for example)
             // ->round(2)
             ->withoutVerifying()
             ->throw()
